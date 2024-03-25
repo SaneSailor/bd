@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Route, Routes } from "react-router-dom";
 import { AuthData } from "./auth/authWrapper";
 import { nav } from "./renderRoutes";
 
@@ -41,11 +41,11 @@ export const RenderMenu = () => {
             })}
 
             { user.isAuthenticated ?
-            <div className="menuItem"><Link to={'#'} onClick={logout}>Logout</Link></div>
+            <div className="menuItem"><NavLink to={'#'} onClick={logout}>Logout</NavLink></div>
             :
-            <div className="menuItem"><Link to={'login'}>Login</Link></div> }
+            [] }
         </div>
     )
 }
 
-export default RenderRoutes
+export default RenderRoutes;

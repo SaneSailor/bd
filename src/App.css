@@ -1,12 +1,28 @@
 .App {
-  text-align: center;
+  display: flex;
+  height: 100%;
+  min-width: 700px;
+  align-items: center;
+  justify-content: center;
+  padding: 0rem;
+  margin: 0rem;
 }
 
-.App-logo {
-  height: 40vmin;
+.logo {
+  display: flex;
+  padding: 6px 09px;
+  margin-top: 9px;
+  margin-bottom: 0;
+  height: 9vmin;
   pointer-events: none;
 }
 
+h2{
+  cursor: pointer;
+  padding-top: 23px;
+  margin-bottom: 0px;
+  color: #1549a3;
+}
 
 .App-header {
   background-color: #d9d4cb;
@@ -17,6 +33,83 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.register-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 88vh;
+  top: 0px;
+}
+
+form{
+  padding: 0px 60px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  margin-top: 0px;
+}
+
+label {
+  font-size: 12px;
+  margin-bottom: 1px;
+  margin-top: 3px;
+  color: #333;
+}
+
+input{
+  padding: 13px;
+  margin: 6px 0;
+  width: 100%;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+span{
+  font-size: 12px;
+  padding: 0px;
+  width: 300px;
+  color: #dc1616;
+  margin-bottom: 3px;
+  display: none;
+}
+
+.formInput{
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  margin: 10px 0px;
+
+}
+.link-btn {
+  background: none;
+  font-weight:300;
+  color: #165ddc;
+  text-decoration: underline;
+  margin-top: 0px;
+}
+
+input:invalid[focused="true"]{
+  border: 1px solid #dc1616;
+}
+input:invalid[focused="true"] ~ span{
+  display: block;
+}
+
+button{
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  background-color: #165ddc;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 9px;
+  margin-bottom: 23px;
+  
 }
 
 .App-link {

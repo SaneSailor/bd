@@ -1,6 +1,6 @@
 import Login from '../components/login';
 import React, { useState } from "react"
-import { Register } from "../components/register"
+import Register  from "../components/register"
 
 export const Landing = () => {
     const [currentForm, setCurrentForm] = useState('register');

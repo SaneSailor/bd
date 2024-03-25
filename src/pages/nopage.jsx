@@ -1,12 +1,16 @@
+import { NavLink } from "react-router-dom"
 
-
-export const NoPage = () => {
+export const NoPage = (props) => {
     return (
         <>
         {/* <HeadNav /> */}
-        <h2>You caught us, 
-            we're still working on this feature. </h2>
-        <p> :( typing giberish to test us, really? :D </p>
+        <h2>Sorry!</h2>
+        <p>
+            ...you need to be authenticated before accessing this page's contents. 
+        </p>
+        <button className="link-btn"><NavLink to={'/'}>
+                    Sign up with any email of login to continue...
+        </NavLink></button>
         </>
     )
 }

@@ -4,8 +4,8 @@ export const Dashboard = () => {
     const { user } = AuthData();
     return (
         <>
-        <h2>Dashboard</h2>
-        <p>Welcome {user.username}</p>
+            <h2>Dashboard</h2>
+            <p>Welcome {user.name}!</p>
         </>
     )
 }
