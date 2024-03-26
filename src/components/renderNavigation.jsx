@@ -4,6 +4,7 @@ import { nav } from "./renderRoutes";
 
 export const RenderRoutes = () => {
     const { user } = AuthData();
+    {console.log(user.name)}
 
     return (
         <Routes>
@@ -43,7 +44,7 @@ export const RenderMenu = () => {
             { user.isAuthenticated ?
             <div className="menuItem"><NavLink to={'#'} onClick={logout}>Logout</NavLink></div>
             :
-            [] }
+            [<div className="menuItem"><NavLink to='/'></NavLink></div>] }
         </div>
     )
 }

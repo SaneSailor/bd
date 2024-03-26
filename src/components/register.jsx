@@ -13,7 +13,7 @@ function Register(props){
         password:"",
         confirmPassword:"",
     });
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errMessage, setErrorMessage] = useState(null);
 
     const inputs = [
         {
@@ -66,10 +66,9 @@ function Register(props){
 
         try {
             register(values.username, values.email, values.password);
-            navigate("/dashboard")
 
         } catch (error) {
-            setErrorMessage(error);
+            setErrorMessage(errMessage);
         }
     }
     
@@ -81,20 +80,19 @@ function Register(props){
     return (
         <div className="register-form">
             <form onSubmit={handleSubmit}>
-                {/* <RenderHeader /> */}
                 <h2>Signup</h2>
                 {inputs.map((input) => (
                     <FormInput key={input.id}  
                     {...input} value={values[input.name]} 
                     onChange={onChange}/>
                 ))}
-                {errorMessage ? <span className="error">{errorMessage}</span>
+                {errMessage ? <span className="error">{errMessage}</span>
                 : null}
                 <button>Register</button>
-            <button className="link-btn" onClick={() => 
-                    props.onFormSwitch('login')}>
-                    Already have an account? Login here.
-            </button>
+                <button className="link-btn" onClick={() => 
+                        props.onFormSwitch('login')}>
+                        Already have an account? Login here.
+                </button>
             </form>
         </div>
     )

@@ -14,53 +14,53 @@ export const AuthWrapper = () => {
     const [ user, setUser ] = useState({name:"", isAuhenticated: false}); 
 
     // Create empty storage for Users with username as key
-    sessionStorage.setItem("email", ["username", "password"]);
+    localStorage.setItem("email", ["username", "password"]);
 
     // User registration function
     const register = (username, email, password) => {
         
         return new Promise((resolve, reject) => {
-            var x,y,i,j=sessionStorage.length;
+            var x,y,i,j=localStorage.length;
 
-            // Loop through session storage
+            // Loop through local storage
             for (i=0; i<j; i++){
 
                 // Pass current key to "x"
-                // x=JSON.stringify(sessionStorage.key(i));
-                x=sessionStorage.key(i);
-                console.log("Current User Email:");
+                x=localStorage.key(i);
+                // x=JSON.stringify(localStorage.key(i));
+                console.log("Stored User Email:");
                 console.log(x);
                 
                 // Check if used parsed email and stored email match
                 if (email !== x){ 
-
+                    
                     // ToDo if user email does not match stored email
-                    // Add new User with unique email to session storage
-                    sessionStorage.setItem(email, [username, password]);
-                    i=j; // stop for loop to get added user data
+                    // Add new User with unique email to local storage
+                    localStorage.setItem(email, [username, password]);
                     
                     // Pass new key to "x" and view entered email in Console Log
-                    x=sessionStorage.key(i);
-                    console.log("Entered User Email:");
-                    console.log(x);
+                    x=localStorage.key(i);
+                    console.log("New User Email/Key:");
+                    console.log(email);
                     
                     // Test Get new user values from storage to console 
-                    y=sessionStorage.getItem(x);
+                    y=localStorage.getItem(x);
                     console.log("New User values:");
-                    console.log(y);
+                    console.log(username, password);
                     
-                    // Set User to useState and Authenticate user
+                    // Save Username to useState & Authenticate user
                     setUser({name: username, isAuhenticated: true});
                     resolve("success");
+                    i=j; // close loop
+                    navigate("/dashboard");
 
                 } else {
                     reject("Email already exists");
-                    i=j; // to end for loop
-                    navigate("/");
+                    i=j; // close loop
+                    navigate("/"); // Try again with iput values ready to be modified
                     
-                } 
+                }
             }
-
         })
     }
             

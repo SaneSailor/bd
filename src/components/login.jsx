@@ -1,63 +1,80 @@
-import React, { useState, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthData } from "./auth/authWrapper";
-import RenderHeader from "./header";
+import FormInput from "./formInput"
+import { useState } from "react";
 
-const Login = (props) => {
-    const navigate = useNavigate();
+function Login(props){
+    const navigate = useNavigate;
+
     const { login } = AuthData();
-    const [ formData, setFormData ] = useReducer((formData, newItem) => { 
-        return ( {...formData, ...newItem} )}, {username:"", pwd:""});
-    const [errMsg, setErrMsg] = useState("");
+    const [values, setValues] = useState({
+        username:"",
+        password:"",
+    });
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    const doLogin = async () => {
+    const inputs = [
+        {
+            id:1,
+            name:"username",
+            type:"text",
+            placeholder: "Username",
+            errorMessage: "Between 3-7 characters, no special characters & spaces",
+            label: "Username",
+            autoComplete:"off",
+            pattern: `^[A-Za-z0-9]{3,7}$`,
+            required: true,
+        },
+        {
+            id:2,
+            name:"password",
+            type:"password",
+            placeholder: "********",
+            errorMessage:"Password should be 3-9 characters",
+            label: "Password",
+            autoComplete:"off",
+            pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[A-Za-z0-9!@#$%^&*]{3,9}$`,
+            required: true,
+        },
+    ]
+    
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
         try {
-            await login(formData.username, formData.pwd)
-            navigate("/dashboard", {state: formData.username})
+            login(values.username, values.password);
+            navigate("/dashboard")
+
         } catch (error) {
-            setErrMsg(error)
+            setErrorMessage(error);
         }
+    }
+    
+    
+    const onChange = (e)=> {
+        setValues({...values, [e.target.name]: e.target.value})
     }
 
     return (
-        <>
-            <section>
-            <RenderHeader />
-            <div className="auth-form-container">
-            <h1>Login</h1>
-            <form>
-                <label htmlFor="username">Username</label>
-                <input 
-                    value={formData.user}
-                    type="text"
-                    id="username"
-                    autoComplete="off"
-                    onChange={(e) => setFormData({username: e.target.value}) }
-                    required
-                    />
-                <label htmlFor="pwd">Password</label>
-                <input 
-                    value={formData.pwd}
-                    type="password"
-                    id="pwd"
-                    autoComplete="off"
-                    onChange={(e) => setFormData({pwd: e.target.value}) }
-                    required
-                    />
-                <button onClick={doLogin}>Login</button>
-                <div>
-                    {errMsg ? <div className="error">{errMsg}</div> : null }
-                </div>
-                <button className="link-btn" onClick={() => 
+        <div className="register-form">
+            <form onSubmit={handleSubmit}>
+                {/* <RenderHeader /> */}
+                <h2>Login</h2>
+                {inputs.map((input) => (
+                    <FormInput key={input.id}  
+                    {...input} value={values[input.name]} 
+                    onChange={onChange}/>
+                ))}
+                {errorMessage ? <span className="error">{errorMessage}</span>
+                : null}
+                <button>Login</button>
+            <button className="link-btn" onClick={() => 
                     props.onFormSwitch('register')}>
                     Need an account? Register here.
-                </button>
+            </button>
             </form>
-            </div>
-            </section>
-        
-        </>
+        </div>
     )
-}
 
+}
 export default Login;

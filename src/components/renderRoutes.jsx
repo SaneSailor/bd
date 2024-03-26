@@ -11,6 +11,7 @@ export const nav = [
     { path: "/dashboard",   name:"Dashboard",   element:<Dashboard />,  isMenu:true,    isPrivate:true},
     { path: "/clients",     name:"Clients",     element:<Clients />,    isMenu:true,    isPrivate:true},
     { path: "/proposals",   name:"Proposals",   element:<Proposals />,  isMenu:true,    isPrivate:true},
-    { path: "/invoices",    name:"Invoices",    element:<Invoices />,   isMenu:false,   isPrivate:true},
+    { path: "/invoices",    name:"Invoices",    element:<Invoices />,   isMenu:true,   isPrivate:true},
     // { path: "*", name:"NoPage", element:<NoPage />, isMenu:false, isPrivate:true},
 ]
+export default nav;
