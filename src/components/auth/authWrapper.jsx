@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import RenderRoutes, { RenderMenu } from "../renderNavigation"
+import RenderRoutes from "../renderNavigation"
 import { useNavigate } from "react-router-dom";
 import RenderHeader from "../header";
 
@@ -9,21 +9,16 @@ export const AuthData = () => useContext(AuthContext);
 
 export const AuthWrapper = () => {
     const navigate = useNavigate();
+    let currentUsername=sessionStorage.key(0);
 
     // Set Authentication to UseState
-    const [ user, setUser ] = useState({name:"", isAuhenticated: false}); 
-
-    // Modified to stored current user in session storage for authentication
-    sessionStorage.setItem("username", "password");
-    
-    // Create empty storage for Users with username as key
+    const [ user, setUser ] = useState({name:currentUsername, isAuhenticated: false}); 
+    // Empty storage for Users registration
     localStorage.setItem("email", ["username", "password"]);
-
-    // User registration function
+    // Register User
     const register = (username, email, password) => {
         
         return new Promise((resolve, reject) => {
-            // var x,y,i,j=localStorage.length;
             var x,i,j=localStorage.length;
 
             // Loop through local storage
@@ -31,36 +26,29 @@ export const AuthWrapper = () => {
 
                 // Pass current key to "x"
                 x=localStorage.key(i);
-                // x=JSON.stringify(localStorage.key(i));
-                console.log("Stored User Email:");
-                console.log(x);
                 
                 // Check if parsed email and stored email match
                 if (email !== x){ 
                     
-                    // If user email does not match stored email
-                    // Create new User item with unique key to local storage
+                    // If user email does not exist, create new User 
+                    // item with unique key & send to local storage
                     localStorage.setItem(email, [username, password]);
-                    
-                    // Pass new key to "x" and view entered email in Console Log
-                    // x=localStorage.key(i);
-                    // console.log("New User Email/Key:");
-                    // console.log(email);
-                    
-                    // Test Get new user values from storage to console 
-                    // y=localStorage.getItem(x);
-                    // console.log("New User values:");
-                    // console.log(username, password);
-                    
+                  
                     // Save Username to useState & Authenticate user
                     sessionStorage.setItem(username, password);
-                    let currentUser=sessionStorage.key(i);
-                    setUser({name: currentUser, isAuhenticated: true});
-                    // setUser({name: username, isAuhenticated: true});
-                    resolve("success");
-                    i=j; // close loop
-                    navigate("/dashboard");
                     
+                    // Check current User in Session
+                    currentUsername=sessionStorage.key(i);
+
+                    // let sessionUsrPwd=sessionStorage.getItem(currentUsername);
+                    // console.log('Current Username: ', currentUsername)
+                    // console.log('Current Password: ', sessionUsrPwd)
+
+                    setUser({name: currentUsername, isAuhenticated: true});
+                    i=j; // close loop
+                    resolve("success");
+                    navigate("/dashboard");
+
                 } else {
                     reject("Email already exists");
                     i=j; // close loop
@@ -72,22 +60,54 @@ export const AuthWrapper = () => {
     }
             
     const login = ( username, password) => {
-        currentUser = 
-                
+        
         return new Promise((resolve, reject) => {
-            if (username === username.user) {
-                if (password === password.user){
-                    // setUser({user: username, isAuhenticated: true});
-                    resolve("success");
-                } else {
-                reject("incorrect password")}
-            } else {
-            reject("User does not exist")}
-        })
+        var x,y,i,j=localStorage.length;
 
+        // Search through local storage
+        for (i=0; i<j; i++){
+            
+            // Pass username and password from key to "y"
+            x=localStorage.key(i);
+            y=localStorage.getItem(x);
+            
+            let authUser = username+","+password;
+            let credentials = y;
+            console.log('Credentials: ', credentials)
+            console.log('Login User: ', authUser)
+            
+            if (credentials !== authUser){
+                // i=j; // close loop
+                reject("Username or Password do not match");
+                // navigate("/");
+                
+            } else {
+                // Save Username to useState & Authenticate user
+                sessionStorage.setItem(username, password);
+                
+                // Check current User in Session
+                currentUsername=sessionStorage.key(i);
+                let sessionUsrPwd=sessionStorage.getItem(currentUsername);
+                setUser({name: currentUsername, isAuhenticated: true});
+
+                console.log('Current Username: ', currentUsername)
+                console.log('Current Password: ', sessionUsrPwd)
+
+                resolve("success");
+                i=j; // close loop
+                window.location.reload();
+                navigate("/dashboard");
+            }}
+        })
     }
+    
     const logout = () => {
-        // setUser({...user, isAuhenticated: false})
+        sessionStorage.clear();
+        setUser({...user, isAuhenticated: false})
+        navigate("/");
+        window.location.reload();
+        
+        // ToDo... Unseat session storage vars
     }
 
     return (
@@ -95,7 +115,6 @@ export const AuthWrapper = () => {
         <AuthContext.Provider value={{user, register, login, logout}}>
             <>
                 <RenderHeader />
-                <RenderMenu />
                 <RenderRoutes />
             </>
         </AuthContext.Provider>  

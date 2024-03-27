@@ -1,0 +1,48 @@
+
+.dashboard {
+    width: 90%;
+    padding: 0rem;
+    flex-direction: column;
+    margin: 0 3rem;
+    align-items: top;
+    position: sticky;
+    top: 1rem;
+  }
+  
+  .DashList, li, Link {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .DashList{
+    top: 1rem;
+  }
+  
+  .DashList a {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .cardContainer {
+    align-items: center;
+    color: #333;
+    margin: 1rem;
+    padding: 30px 45px;
+    border: 2px solid rgba(215, 198, 179, 0.447);
+    border-radius: 6px;
+    flex-wrap: nowrap;
+  }
+  
+  .cardContainer:hover{
+    border: 3px solid rgb(215, 198, 179);
+  }
+  
+  .cardContainer a:hover{
+    color: #1549a3;
+  
+  }
+  

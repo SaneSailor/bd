@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import loadingLogo from "../resources/logo.png"
+import { RenderMenu } from './renderNavigation';
 
 
 
@@ -7,9 +8,10 @@ export default function RenderHeader() {
 
     return (
         <div className="head-container">    
-            <Link to="/" className="logo">
+            <NavLink to="/" className="logo">
                 <img src={loadingLogo} alt="Logo" />
-            </Link>
+            </NavLink>
+            <RenderMenu />
         </ div>
 
     )

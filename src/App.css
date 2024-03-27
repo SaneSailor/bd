@@ -10,9 +10,10 @@
 
 .logo {
   display: flex;
-  padding: 6px 9px;
+  padding: 11px 13px;
   padding-bottom: 0px;
   margin-top: 9px;
+  align-items: stretch;
   margin-bottom: 1rem;
   max-height: 56px;
   height: calc(18px + 9vmin);
@@ -25,17 +26,6 @@ h2{
   margin-bottom: 0px;
   color: #1549a3;
 }
-/* 
-.App-header {
-  background-color: #d9d4cb;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
 
 .head-container {
   background-color: rgb(235, 228, 220);
@@ -58,6 +48,44 @@ h2{
   height: 84vh;
   margin-top: 0px;
 }
+
+.menu a {
+  text-decoration: none;
+  font-weight: 300;
+  color: #333;
+  padding: 12px;
+}
+
+.menu a:active {
+  text-decoration: none;
+  font-weight: 500;
+  color: #1549a3;
+  padding: 12px;
+}
+
+.logoutBtn a{
+  font-weight: 500;
+  color: white;
+  padding: 0px 13px;
+  margin: 0px 1px;
+}
+.logoutBtn{
+  font-weight: 500;
+  padding: 1px 17px;
+  background-color: #165ddc;
+  margin: 0px 1px;
+}
+
+.menu, .menuitem {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin: 19px;
+  flex-wrap: nowrap;
+  
+}
+
 
 form{
   padding: 0px 60px;

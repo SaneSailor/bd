@@ -1,0 +1,67 @@
+
+.client {
+    width: 90%;
+    padding: 0rem;
+    margin: 0 3rem;
+    margin-top: 0.5rem;
+  }
+  
+  .view{
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    position: sticky;
+    margin-top: 2rem;
+  }
+
+  .username{
+    color: #1549a3;
+  }
+
+  .topC{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .clientList, li, Link {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .clientList {
+    margin-top: 5rem;
+  }
+  
+  .clientList a {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .cardContainer {
+    color: #333;
+    display: flex;
+    margin: 1rem;
+    padding: 31px 56px;
+    border: 2px solid rgba(215, 198, 179, 0.447);
+    border-radius: 6px;
+    flex-wrap: nowrap;
+  }
+  
+  .cardContainer:hover{
+    border: 1px solid rgb(215, 198, 179);
+  }
+  
+  .cardContainer a:hover{
+    color: #1549a3;
+  }
+  
+  .pageTitle, .title, .action-label{
+    margin: 7px 0.5rem;
+  }

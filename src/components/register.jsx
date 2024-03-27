@@ -66,6 +66,8 @@ function Register(props){
 
         try {
             register(values.username, values.email, values.password);
+            navigate("/dashboard")
+
 
         } catch (error) {
             setErrorMessage(errMessage);
@@ -88,7 +90,7 @@ function Register(props){
                 ))}
                 {errMessage ? <span className="error">{errMessage}</span>
                 : null}
-                <button>Register</button>
+                <button type="submit">Register</button>
                 <button className="link-btn" onClick={() => 
                         props.onFormSwitch('login')}>
                         Already have an account? Login here.

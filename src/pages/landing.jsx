@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import Register  from "../components/register"
 
 export const Landing = () => {
-    const [currentForm, setCurrentForm] = useState('register');
+    const [currentForm, setCurrentForm] = useState('login');
 
     const toogleForm = (formName) => {
         setCurrentForm(formName);
@@ -11,7 +11,6 @@ export const Landing = () => {
 
     return (
         <main className='Landing'>
-            {/* <Login /> */}
             <div>
                 {
                     currentForm === "login" ? <Login onFormSwitch={toogleForm} /> : <Register onFormSwitch={toogleForm}  />
