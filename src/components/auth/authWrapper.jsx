@@ -13,6 +13,9 @@ export const AuthWrapper = () => {
     // Set Authentication to UseState
     const [ user, setUser ] = useState({name:"", isAuhenticated: false}); 
 
+    // Modified to stored current user in session storage for authentication
+    sessionStorage.setItem("username", "password");
+    
     // Create empty storage for Users with username as key
     localStorage.setItem("email", ["username", "password"]);
 
@@ -20,7 +23,8 @@ export const AuthWrapper = () => {
     const register = (username, email, password) => {
         
         return new Promise((resolve, reject) => {
-            var x,y,i,j=localStorage.length;
+            // var x,y,i,j=localStorage.length;
+            var x,i,j=localStorage.length;
 
             // Loop through local storage
             for (i=0; i<j; i++){
@@ -31,29 +35,32 @@ export const AuthWrapper = () => {
                 console.log("Stored User Email:");
                 console.log(x);
                 
-                // Check if used parsed email and stored email match
+                // Check if parsed email and stored email match
                 if (email !== x){ 
                     
-                    // ToDo if user email does not match stored email
-                    // Add new User with unique email to local storage
+                    // If user email does not match stored email
+                    // Create new User item with unique key to local storage
                     localStorage.setItem(email, [username, password]);
                     
                     // Pass new key to "x" and view entered email in Console Log
-                    x=localStorage.key(i);
-                    console.log("New User Email/Key:");
-                    console.log(email);
+                    // x=localStorage.key(i);
+                    // console.log("New User Email/Key:");
+                    // console.log(email);
                     
                     // Test Get new user values from storage to console 
-                    y=localStorage.getItem(x);
-                    console.log("New User values:");
-                    console.log(username, password);
+                    // y=localStorage.getItem(x);
+                    // console.log("New User values:");
+                    // console.log(username, password);
                     
                     // Save Username to useState & Authenticate user
-                    setUser({name: username, isAuhenticated: true});
+                    sessionStorage.setItem(username, password);
+                    let currentUser=sessionStorage.key(i);
+                    setUser({name: currentUser, isAuhenticated: true});
+                    // setUser({name: username, isAuhenticated: true});
                     resolve("success");
                     i=j; // close loop
                     navigate("/dashboard");
-
+                    
                 } else {
                     reject("Email already exists");
                     i=j; // close loop
@@ -65,11 +72,12 @@ export const AuthWrapper = () => {
     }
             
     const login = ( username, password) => {
+        currentUser = 
                 
         return new Promise((resolve, reject) => {
             if (username === username.user) {
                 if (password === password.user){
-                    setUser({user: username, isAuhenticated: true});
+                    // setUser({user: username, isAuhenticated: true});
                     resolve("success");
                 } else {
                 reject("incorrect password")}
@@ -79,7 +87,7 @@ export const AuthWrapper = () => {
 
     }
     const logout = () => {
-        setUser({...user, isAuhenticated: false})
+        // setUser({...user, isAuhenticated: false})
     }
 
     return (

@@ -1,23 +1,37 @@
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import { AuthData } from "./auth/authWrapper";
 import { nav } from "./renderRoutes";
+// import Dashboard from "../pages/dashboard";
+// import Landing from "../pages/landing";
 
 export const RenderRoutes = () => {
-    const { user } = AuthData();
-    {console.log(user.name)}
+    // const { user } = AuthData();
 
     return (
         <Routes>
             {nav.map((r, i) => {
-                if (r.isPrivate && user.isAuthenticated) {
-                    return <Route key={i} path={r.path} element={r.element}/>
-                } else if (!r.isPrivate) {
+                // if (r.isPrivate && user.isAuthenticated) {
+                //     return <Route key={i} path={r.path} element={r.element}/>
+                // } else if (!r.isPrivate) {
                     return <Route key={i} path={r.path} element={r.element} />
-                } else return false
+                // } else return false
             })}
         </Routes>
     )
 }
+
+// const router = createBrowserRouter([
+//     {
+//         path:'/dashboard',
+//         element:<Dashboard />
+//     },
+//     {
+//         path:'/',
+//         element:<Landing />
+//     },
+// ])
+
+
 
 export const RenderMenu = () => {
     const { user, logout } = AuthData();
