@@ -1,7 +1,7 @@
 import { ViewClient } from './card';
 import { NavLink } from 'react-router-dom';
 
-function clientList() {
+function view() {
     return (
         <>
         <section className='clientList'>
@@ -15,4 +15,6 @@ function clientList() {
     )
 }
 
-export default clientList;
+
+
+export default view;

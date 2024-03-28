@@ -9,7 +9,7 @@ export const Invoices = () => {
         <div className='invoice'>
             <div className='topC'>
                 <img src={loadingInvoice} alt="Invoice" />
-                <h2 className="pageTitle">Invoice</h2>        
+                <h2 className="pageTitle">Invoices</h2>        
             </div>
             <div className='view'>
                 <ViewInvoice />

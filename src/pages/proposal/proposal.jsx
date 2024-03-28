@@ -9,7 +9,7 @@ export const Proposals = () => {
         <div className='proposal'>
             <div className='topC'>
             <img src={loadingProposal} alt="Proposal" />
-                <h2 className="pageTitle">Proposal</h2>        
+                <h2 className="pageTitle">Proposals</h2>        
             </div>
             <div className='view'>
                 <ViewProposal />

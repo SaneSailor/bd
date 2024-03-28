@@ -6,14 +6,7 @@
     margin-top: 0.5rem;
   }
   
-  .view{
-    display: flex;
-    flex-direction: row;
-    align-items: top;
-    position: sticky;
-    margin-top: 2rem;
-  }
-
+  
   .username{
     color: #1549a3;
   }

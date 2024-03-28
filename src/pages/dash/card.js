@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import loadingClient from './card resources/client.gif';
-import loadingProposal from './card resources/proposal.gif';
-import loadingInvoice from './card resources/invoice.gif';
+import loadingClient from '../../components/card resources/client.gif';
+import loadingProposal from '../../components/card resources/proposal.gif';
+import loadingInvoice from '../../components/card resources/invoice.gif';
 
 export const ClientCard = () => {
     return(

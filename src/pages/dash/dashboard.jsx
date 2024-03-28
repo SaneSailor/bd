@@ -1,5 +1,5 @@
 import { AuthData } from "../../components/auth/authWrapper"
-import Dash from "../../components/dash";
+import Dash from "./dash";
 import "./dashboard.css"
 
 
